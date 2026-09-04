@@ -24,6 +24,8 @@ class Gradient(object):
 
     @staticmethod
     def vertical(*args):
+        if not args:
+            raise ValueError('Gradient.vertical() requires at least one color')
         size=len(args)
         texture = Texture.create(size=(1, size), colorfmt='rgba')
         buf = bytes([int(v * 255) for v in chain(*args)])  # flattens
