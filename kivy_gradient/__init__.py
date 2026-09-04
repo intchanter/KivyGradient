@@ -7,7 +7,9 @@ class Gradient(object):
 
     @staticmethod
     def horizontal(*args):
-        size=len(args)
+        if not args:
+            raise ValueError('Gradient.horizontal() requires at least one color')
+        size = len(args)
         texture = Texture.create(size=(size, 1), colorfmt='rgba')
         buf = bytes([int(v * 255) for v in chain(*args)])  # flattens
 
